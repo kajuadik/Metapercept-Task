@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #D8D9DA;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #D6EFED;
+            text-align: center;
+        }
+
+        body {
+            font-size: 12pt;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Employee details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Date of Joining</th>
+            </tr>
+            <!-- <tr>
+                <td>Kajal</td>
+                <td>Technical Writer</td>
+                <td>29-11-2023</td>
+            </tr>
+            <tr>
+                <td>Arti</td>
+                <td>Technical Writer</td>
+                <td>29-10-2023</td>
+            </tr> -->
+
+        </thead>
+        <tbody id="empTable"></tbody>
+    </table>
+    <script>
+        const employees = [
+            { name: 'kajal', designation: 'Technical Writer', joiningdate: '29-11-2023', address: 'xyz', salary: 600000 },
+            {
+                name: 'Arti', designation: 'Technical Writer', joiningdate: '29-10-2023', address: 'xyz', salary: 700000
+            },
+
+        ];
+
+        const technicalWriters = employees.filter(employee => employee.designation === 'Technical writer');
+
+        const empSalary = employees.filter(employee => employee.salary > 500000 && employee.salary < 700000);
+
+        const showData = empSalary.map(({ name, designation, joiningdate }) => ({ name, designation, joiningdate }));
+
+        const createRecord = (employee) => {
+
+            const row = document.createElement('tr');
+            for (const key in employee) {
+                const r1 = document.createElement('td');
+                r1.textContent = employee[key];
+                row.append(r1);
+            }
+            return row;
+        };
+
+        const tBody = document.getElementById('empTable');
+        showData.forEach(employee => {
+            const row = createRecord(employee);
+            tBody.appendChild(row);
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
